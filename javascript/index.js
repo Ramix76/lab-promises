@@ -127,4 +127,51 @@ makeBroccoli();
 
 
 // Bonus 2 - Promise all
-// ...
+const stepsBrusselsSprouts = [
+  obtainInstruction("brusselsSprouts", 0),
+  obtainInstruction("brusselsSprouts", 1),
+  obtainInstruction("brusselsSprouts", 2),
+  obtainInstruction("brusselsSprouts", 3),
+  obtainInstruction("brusselsSprouts", 4),
+  obtainInstruction("brusselsSprouts", 5),
+  obtainInstruction("brusselsSprouts", 6),
+  obtainInstruction("brusselsSprouts", 7)
+];
+
+Promise.all(stepsBrusselsSprouts)
+  .then((steps) => {
+    steps.forEach((step) => {
+      document.querySelector("#brusselsSprouts").innerHTML += `<li>${step}</li>`;
+    });
+    document.querySelector("#brusselsSprouts").innerHTML += `<li>Brussels sprouts are ready!</li>`;
+    document.querySelector("#brusselsSproutsImg").removeAttribute("hidden");
+  })
+  .catch((error) => {
+    console.error("Error with Brussels Sprouts:", error);
+  });
+
+//TODAS A LA VEZ
+// async function makeDish(dishName, stepsCount, imgId) {
+//   const list = document.querySelector(`#${dishName}`);
+//   try {
+//     for (let i = 0; i < stepsCount; i++) {
+//       const step = await obtainInstruction(dishName, i);
+//       list.innerHTML += `<li>${step}</li>`;
+//     }
+//     list.innerHTML += `<li>${capitalize(dishName)} is ready!</li>`;
+//     document.querySelector(`#${imgId}`).removeAttribute("hidden");
+//   } catch (error) {
+//     console.error(`Error making ${dishName}:`, error);
+//   }
+// }
+
+// function capitalize(str) {
+//   return str[0].toUpperCase() + str.slice(1);
+// }
+
+// // Llamadas para todos los platos
+// makeDish("mashedPotatoes", 5, "mashedPotatoesImg");
+// makeDish("steak", 8, "steakImg");
+// makeDish("brusselsSprouts", 8, "brusselsSproutsImg");
+// makeDish("broccoli", 7, "broccoliImg");
+
